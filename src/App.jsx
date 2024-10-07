@@ -4,7 +4,7 @@ import LoadingSpinner from "./components/LoadingSpinner"
 import ErrorComponent from "./components/ErrorComponent"
 import BlogPosts from "./components/BlogPosts"
 
-const URL = "https://bomboclatjsonplaceholder.typicode.com/posts"
+const URL = "https://jsonplaceholder.typicode.com/posts"
 
 function App() {
 
@@ -50,7 +50,7 @@ function App() {
     <>
       {isLoading && <LoadingSpinner />}
       {errorExists && <ErrorComponent />}
-      {!isLoading && !errorExists && blogData && <BlogPosts />}
+      {!isLoading && !errorExists && blogData && <BlogPosts blogData={blogData}/>}
     </>
   )
 }
