@@ -1,11 +1,14 @@
 import React from "react";
 import './App.css'
+import LoadingSpinner from "./components/LoadingSpinner"
+import ErrorComponent from "./components/ErrorComponent"
+import BlogPosts from "./components/BlogPosts"
 
-const URL = "https://jsonplaceholder.typicode.com/posts"
+const URL = "https://bomboclatjsonplaceholder.typicode.com/posts"
 
 function App() {
 
-  const [blogData, setBlogData] = React.useState([{body: "I really hope this works"}])
+  const [blogData, setBlogData] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [errorExists, setErrorExists] = React.useState(false)
   
@@ -45,8 +48,9 @@ function App() {
 
   return (
     <>
-      <h1>DJS10 - Asynchrony</h1>
-      <p>{blogData[0].body}</p>
+      {isLoading && <LoadingSpinner />}
+      {errorExists && <ErrorComponent />}
+      {!isLoading && !errorExists && blogData && <BlogPosts />}
     </>
   )
 }
