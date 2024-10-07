@@ -6,8 +6,8 @@ const URL = "https://jsonplaceholder.typicode.com/posts"
 function App() {
 
   const [blogData, setBlogData] = React.useState([{body: "I really hope this works"}])
-  const [isLoading, setIsLoading] = React.useState(null)
-  const [errorExists, setErrorExists] = React.useState(null)
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [errorExists, setErrorExists] = React.useState(false)
   
   React.useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -20,6 +20,9 @@ function App() {
         if (!response.ok) {
           // If there is an error, set the error state to true
           setErrorExists(true)
+
+          // Switch isLoading to false
+          setIsLoading(false)
         }
         const data = await response.json()
         setBlogData(data)
@@ -28,6 +31,9 @@ function App() {
       catch (error) {
         // If there is an error, set the error state to true
         setErrorExists(true)
+        
+        // Switch isLoading to false
+        setIsLoading(false)
         console.log(`Something went wrong. Error: ${error}`)
       }
     }
