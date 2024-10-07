@@ -23,6 +23,7 @@ function App() {
 
           // Switch isLoading to false
           setIsLoading(false)
+          return
         }
         const data = await response.json()
         setBlogData(data)
@@ -31,7 +32,7 @@ function App() {
       catch (error) {
         // If there is an error, set the error state to true
         setErrorExists(true)
-        
+
         // Switch isLoading to false
         setIsLoading(false)
         console.log(`Something went wrong. Error: ${error}`)
